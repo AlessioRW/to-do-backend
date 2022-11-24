@@ -13,7 +13,18 @@ async function seed() {
         description: 'This note exists',
         status: 1
     })
-        
+
+    await List.create({
+        title: 'Really cool note',
+        description: 'This note exists',
+        status: 1
+    })
+
+    await List.create({
+        title: 'Really cool note',
+        description: 'This note exists',
+        status: 1
+    })
 
 }
 
