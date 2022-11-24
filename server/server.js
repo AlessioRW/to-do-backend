@@ -14,7 +14,7 @@ app.use('/toDo', toDoRouter)
 
 app.listen(5001, async () => {
     await db.sync()
-    seed()
+    await seed()
     console.log("listening on port 5001")
 })
 
