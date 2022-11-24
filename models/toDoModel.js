@@ -5,9 +5,9 @@ class List extends Model {}
 
 List.init({
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true
+        allowNull: false,
     },
     title: {
         type: DataTypes.STRING,
@@ -20,6 +20,6 @@ List.init({
     status: {
         type: DataTypes.INTEGER
     }
-}, {sequelize: db})
+}, { sequelize: db })
 
 module.exports = List

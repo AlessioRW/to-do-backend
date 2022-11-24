@@ -1,5 +1,6 @@
 const {Router} = require('express')
 const List = require('../../models/toDoModel')
+const newID = require("../utility/snowflake");
 const toDoRouter = Router()
 
 //get - gets all notes, sends 200 status and all notes an an object - get(localhost:[port]/)
@@ -14,6 +15,7 @@ toDoRouter.post('/', async (req,res) => {
     try {
         const body = req.body
         await List.create({
+            id: newID().toString(),
             title: body.title,
             description: body.description,
             status: 1
@@ -30,6 +32,10 @@ toDoRouter.put('/', async (req,res) => {
     try {
         const body = req.body
         const item = await List.findByPk(body.id)
+        if (item == null) {
+            res.sendStatus(404);
+            return;
+        }
 
         await item.update({
             title: body.title,
@@ -42,11 +48,17 @@ toDoRouter.put('/', async (req,res) => {
         res.sendStatus(401)
     }
 })
+
 //delete - deletes a list item by id - delete(localhost:[port]/:id)
 toDoRouter.delete("/:id", async(req, res) => {
     try {
         const id = req.params.id
+
         const requestedDelete = await List.findByPk(id)
+        if (requestedDelete == null) {
+            res.sendStatus(404);
+            return;
+        }
         await requestedDelete.destroy()
         res.sendStatus(200)
     } catch (error) {
