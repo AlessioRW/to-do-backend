@@ -6,10 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github-georeeve:AlessioRW/to-do-backend.git"
-  },
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
