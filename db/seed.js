@@ -7,6 +7,12 @@ async function seed() {
     await db.sync({
         force:true
     })
+
+    await List.create({
+        title: 'Really cool note',
+        description: 'This note exists',
+        status: 1
+    })
         
 
 }

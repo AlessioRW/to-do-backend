@@ -1,7 +1,59 @@
 const {Router} = require('express')
+const List = require('../../models/toDoModel')
 const toDoRouter = Router()
 
+//get - gets all notes, sends 200 status and all notes an an object - get(localhost:[port]/)
 
+toDoRouter.get("/", async (req, res) => {
+    const allList = await List.findAll()
+    res.status(200).send(allList)
+})
 
+//add/post - posts a note using data from body, sends 201 status - post(localhost:[port]/)
+toDoRouter.post('/', async (req,res) => {
+    try {
+        const body = req.body
+        await List.create({
+            title: body.title,
+            description: body.description,
+            status: 1
+        })
+        res.sendStatus(200)
+    } catch (error) {
+        console.log(error)
+        res.sendStatus(401)
+    }
+})
+
+//put - gets id of item and writes new text or status, sends 200 - put(localhost:[port]/)
+toDoRouter.put('/', async (req,res) => {
+    try {
+        const body = req.body
+        const item = await List.findByPk(body.id)
+
+        await item.update({
+            title: body.title,
+            description: body.description,
+            status: body.status
+        })
+        res.sendStatus(200)
+    } catch (error) {
+        console.log(error)
+        res.sendStatus(401)
+    }
+})
+//delete - deletes a list item by id - delete(localhost:[port]/:id)
+toDoRouter.delete("/:id", async(req, res) => {
+    try {
+        const id = req.params.id
+        const requestedDelete = await List.findByPk(id)
+        await requestedDelete.destroy()
+        res.sendStatus(200)
+    } catch (error) {
+        console.log(error)
+        res.sendStatus(500)
+    }
+    
+})
 
 module.exports = toDoRouter

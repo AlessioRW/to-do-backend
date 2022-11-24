@@ -9,11 +9,11 @@ List.init({
         primaryKey: true,
         autoIncrement: true
     },
-    Title: {
+    title: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    Description: {
+    description: {
         type: DataTypes.STRING,
         allowNull: false
     },
