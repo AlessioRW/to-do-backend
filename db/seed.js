@@ -18,14 +18,14 @@ async function seed() {
         id: newID().toString(),
         title: 'Really cool note',
         description: 'This note exists',
-        status: 1
+        status: 2
     })
 
     await List.create({
         id: newID().toString(),
         title: 'Really cool note',
         description: 'This note exists',
-        status: 1
+        status: 3
     })
 }
 
