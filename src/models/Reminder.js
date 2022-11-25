@@ -25,8 +25,8 @@ Reminder.init(
     },
     important: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
-    }
+      defaultValue: 0,
+    },
   },
   { sequelize: db }
 );
