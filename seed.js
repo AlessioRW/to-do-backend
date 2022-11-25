@@ -1,5 +1,5 @@
 const db = require("./src/db/db");
-const { User, List } = require("./src/models");
+const { User, Reminder } = require("./src/models");
 const argon2 = require("argon2");
 
 async function seed() {
