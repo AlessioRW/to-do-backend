@@ -1,13 +1,13 @@
 const { Router } = require("express");
-const { List } = require("../models");
+const { Reminder } = require("../models");
 const { body, param } = require("express-validator");
 const toDoRouter = Router();
 
 //get - gets all notes, sends 200 status and all notes an an object - get(localhost:[port]/)
 
 toDoRouter.get("/", async (req, res) => {
-  const allList = await List.findAll();
-  res.status(200).send(allList);
+  const allReminders = await Reminder.findAll();
+  res.status(200).send(allReminders);
 });
 
 //add/post - posts a note using data from body, sends 201 status - post(localhost:[port]/)
@@ -21,7 +21,7 @@ toDoRouter.post(
   async (req, res) => {
     try {
       const body = req.body;
-      await List.create({
+      await Reminder.create({
         title: body.title,
         description: body.description,
         status: 1,
@@ -46,7 +46,7 @@ toDoRouter.put(
   async (req, res) => {
     try {
       const body = req.body;
-      const item = await List.findByPk(body.id);
+      const item = await Reminder.findByPk(body.id);
       if (item == null) {
         res.sendStatus(404);
         return;
@@ -70,7 +70,7 @@ toDoRouter.delete("/:id", param("id").isString().isNumeric(), async (req, res) =
   try {
     const id = req.params.id;
 
-    const requestedDelete = await List.findByPk(id);
+    const requestedDelete = await Reminder.findByPk(id);
     if (requestedDelete == null) {
       res.sendStatus(404);
       return;
