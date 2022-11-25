@@ -5,7 +5,6 @@ const { Reminder } = require("../models");
 const toDoRouter = Router();
 
 // get - gets all notes, sends 200 status and all notes as an object - get(localhost:[port]/)
-
 toDoRouter.get("/", async (req, res) => {
   const allReminders = await Reminder.findAll();
   res.status(200).send(allReminders);
