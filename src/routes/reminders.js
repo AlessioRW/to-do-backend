@@ -63,4 +63,19 @@ remindersRouter.delete("/:id", async (req, res) => {
   }
 });
 
+
+remindersRouter.put('/important/:id/:newValue', async (req,res) => {
+  try {
+    const reminder = await Reminder.findByPk(req.params.id)
+
+    await reminder.update({
+      important: req.params.newValue
+    })
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
+
 module.exports = remindersRouter;

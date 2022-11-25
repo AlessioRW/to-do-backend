@@ -23,6 +23,10 @@ Reminder.init(
     status: {
       type: DataTypes.INTEGER,
     },
+    important: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    }
   },
   { sequelize: db }
 );
