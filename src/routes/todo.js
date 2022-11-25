@@ -3,7 +3,7 @@ const { Reminder } = require("../models");
 const { body, param } = require("express-validator");
 const toDoRouter = Router();
 
-//get - gets all notes, sends 200 status and all notes an an object - get(localhost:[port]/)
+//get - gets all notes, sends 200 status and all notes as an object - get(localhost:[port]/)
 
 toDoRouter.get("/", async (req, res) => {
   const allReminders = await Reminder.findAll();

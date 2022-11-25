@@ -1,6 +1,6 @@
 const express = require("express");
 const db = require("./db/db");
-const seed = require("../seed");
+const seed = require("./utility/seed");
 const cors = require("cors");
 const toDoRouter = require("./routes/todo");
 
