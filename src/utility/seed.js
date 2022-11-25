@@ -14,19 +14,19 @@ async function seed() {
   });
 
   await user.createReminder({
-    title: "Really cool note",
+    title: "Really cool note 1",
     description: "This note exists",
     status: 1,
   });
 
   await user.createReminder({
-    title: "Really cool note",
+    title: "Really cool note 2",
     description: "This note exists",
     status: 2,
   });
 
   await user.createReminder({
-    title: "Really cool note",
+    title: "Really cool note 3",
     description: "This note exists",
     status: 3,
   });
