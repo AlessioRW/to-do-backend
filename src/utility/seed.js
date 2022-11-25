@@ -1,6 +1,6 @@
-const db = require("../db/db");
-const { User, Reminder } = require("../models");
 const argon2 = require("argon2");
+const db = require("../db/db");
+const { User } = require("../models");
 
 async function seed() {
   await db.sync({
