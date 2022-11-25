@@ -1,28 +1,31 @@
-const List  = require('../models/toDoModel');
 const db = require('./db');
-const newID = require("../server/utility/snowflake");
+const {User, List} = require("../models");
+const argon2 = require("argon2");
 
 async function seed() {
     await db.sync( {
         force: true
     })
 
-    await List.create({
-        id: newID().toString(),
+    const hash = await argon2.hash("password");
+    const user = await User.create({
+        email: "test@example.com",
+        password: hash
+    })
+
+    await user.createReminder({
         title: 'Really cool note',
         description: 'This note exists',
         status: 1
     })
 
-    await List.create({
-        id: newID().toString(),
+    await user.createReminder({
         title: 'Really cool note',
         description: 'This note exists',
         status: 2
     })
 
-    await List.create({
-        id: newID().toString(),
+    await user.createReminder({
         title: 'Really cool note',
         description: 'This note exists',
         status: 3

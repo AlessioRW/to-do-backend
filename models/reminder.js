@@ -1,13 +1,15 @@
 const { Model, DataTypes } = require('sequelize')
 const db = require('../db/db')
+const newID = require("../server/utility/snowflake");
 
-class List extends Model {}
+class Reminder extends Model {}
 
-List.init({
+Reminder.init({
     id: {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
+        defaultValue: () => newID().toString()
     },
     title: {
         type: DataTypes.STRING,
@@ -22,4 +24,4 @@ List.init({
     }
 }, { sequelize: db })
 
-module.exports = List
+module.exports = Reminder
