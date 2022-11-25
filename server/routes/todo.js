@@ -1,6 +1,5 @@
 const {Router} = require('express')
-const List = require('../../models/toDoModel')
-const newID = require("../utility/snowflake");
+const {List} = require('../../models')
 const {body, param} = require("express-validator");
 const toDoRouter = Router()
 
@@ -20,7 +19,6 @@ toDoRouter.post('/',
     try {
         const body = req.body
         await List.create({
-            id: newID().toString(),
             title: body.title,
             description: body.description,
             status: 1
