@@ -8,6 +8,9 @@ function sign(id) {
 }
 
 function verify(token) {
+  if (token == null) {
+    return null;
+  }
   return jsonwebtoken.verify(token, privateKey, { algorithms: ["ES256"] });
 }
 
